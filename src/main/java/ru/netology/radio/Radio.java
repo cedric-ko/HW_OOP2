@@ -2,8 +2,8 @@ package ru.netology.radio;
 
 public class Radio {
 
-    public int currentStation; // это поле хранит номер текущей радиостанции
-    public int currentVolume; // это поле хранит текущей уровень громкости звука
+    private int currentStation; // это поле хранит номер текущей радиостанции
+    private int currentVolume; // это поле хранит текущей уровень громкости звука
 
     // настройки радиостанций
     public int getCurrentStation() { // геттер для текущей станции
