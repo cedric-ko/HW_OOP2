@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
-    Radio station = new Radio(5);
-    Radio volume = new Radio(5);
+    Radio station = new Radio();
+    Radio volume = new Radio();
 
     // проверяем конструкторы
     @Test
     public void shouldSetNumbersOfStations() {
 
-        Assertions.assertEquals(5, station.getNumbersOfStations());
+        Assertions.assertEquals(10, station.getNumbersOfStations());
     }
 
     // проверки для радиостанций
@@ -25,11 +25,11 @@ public class RadioTest {
     @Test
     public void shouldGetNumbersOfStations() { // проверка количества радиостанций
 
-        Assertions.assertEquals(5, station.getNumbersOfStations());
+        Assertions.assertEquals(10, station.getNumbersOfStations());
     }
 
     @Test
-    public void shouldGetFinalStation() { // проверка номера последней станции по умолчанию
+    public void shouldGetFinalStation() { // проверка номера последней станции
 
         Assertions.assertEquals(9, station.getFinalStation());
     }
@@ -37,7 +37,7 @@ public class RadioTest {
     @Test
     public void shouldSetStation() { // проверка включения требуемой радиостанции
 
-        station.setCurrentStation(5);
+        station.putNewStation(5);
 
         Assertions.assertEquals(5, station.getCurrentStation());
     }
@@ -46,7 +46,7 @@ public class RadioTest {
     public void shouldNotSetStationAbove9() { // проверка невключения станции больше 9
 
         station.setCurrentStation(5); // устанавливаем начальное значение
-        station.setCurrentStation(10); // устанавливаем значение больше 9
+        station.putNewStation(10); // устанавливаем значение больше 9
 
         Assertions.assertEquals(5, station.getCurrentStation());
     }
@@ -54,10 +54,10 @@ public class RadioTest {
     @Test
     public void shouldNotSetStationUnder0() { // проверка невключения станции ниже 0
 
-        station.setCurrentStation(0); // устанавливаем начальное значение
-        station.setCurrentStation(-1); // устанавливаем значение ниже 0
+        station.setCurrentStation(5); // устанавливаем начальное значение
+        station.putNewStation(-1); // устанавливаем значение ниже 0
 
-        Assertions.assertEquals(0, station.getCurrentStation());
+        Assertions.assertEquals(5, station.getCurrentStation());
     }
 
     @Test
@@ -129,7 +129,7 @@ public class RadioTest {
     @Test
     public void shouldNotIncreaseVolumeAbove100() { // проверка невозможности увеличения звука выше 100
 
-        volume.setCurrentVolume(101);
+        volume.setCurrentVolume(100);
         volume.increaseVolume();
 
         Assertions.assertEquals(100, volume.getCurrentVolume());
@@ -147,7 +147,7 @@ public class RadioTest {
     @Test
     public void shouldNotDecreaseVolumeUnder0() { // проверка невозможности уменьшения громкости звука ниже 0
 
-        volume.setCurrentVolume(-1);
+        volume.setCurrentVolume(0);
         volume.decreaseVolume();
 
         Assertions.assertEquals(0, volume.getCurrentVolume());

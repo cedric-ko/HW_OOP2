@@ -1,14 +1,19 @@
 package ru.netology.radio;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
 public class Radio {
 
     // поля инициализации для радиостанций
     private int firstStation = 0;
     private int numbersOfStations = 10;
-    private int finalStation = firstStation + numbersOfStations - 1; /*
-    мне кажется, это можно красиво реализовать через массив, длина которого равна
-    количеству радиостанций, но я не знаю, как задавать длину массива, не перечисляя
-    все его ячейки */
+    private int finalStation = firstStation + numbersOfStations - 1;
     private int currentStation = firstStation; // номер текущей радиостанции
 
     // поля инициализации для громкости звука
@@ -16,40 +21,15 @@ public class Radio {
     private int highestVolume = 100;
     private int currentVolume = lowestVolume + 10; // текущей уровень громкости звука
 
-    // конструкторы
-    public Radio(int numbersOfStations) { // конструктор для выбора количества радиостанций
-        this.numbersOfStations = numbersOfStations;
-    }
-
-    public Radio() { // конструктор для количества станций по умолчанию
-
-    }
-
     // настройки радиостанций
-    public int getFirstStation() { // геттер для первой станции диапазона
-        return firstStation;
-    }
-
-    public int getNumbersOfStations() { // геттер для количества радиостанций
-        return numbersOfStations;
-    }
-
-    public int getFinalStation() { // геттер для последней станции по умолчанию
-        return finalStation;
-    }
-
-    public int getCurrentStation() { // геттер для текущей станции
-        return currentStation;
-    }
-
-    public void setCurrentStation(int newCurrentStation) { // сеттер для радиостанции
-        if (newCurrentStation < firstStation) {
+    public void putNewStation(int newStation) { // включение новой радиостанции
+        if (newStation < firstStation) {
             return;
         }
-        if (newCurrentStation > finalStation) {
+        if (newStation > finalStation) {
             return;
         }
-        currentStation = newCurrentStation;
+        currentStation = newStation;
     }
 
     public void nextStation() { // метод переключения на следующую станцию
@@ -69,28 +49,6 @@ public class Radio {
     }
 
     // настройки громкости звука
-    public int getLowestVolume() { // геттер для минимального уровня громкости звука
-        return lowestVolume;
-    }
-
-    public int getHighestVolume() { // геттер для максимального уровня громкости звука
-        return highestVolume;
-    }
-
-    public int getCurrentVolume() { // геттер для текущего уровня громкости звука
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) { // сеттер для уровня громкости звука
-        if (newCurrentVolume < lowestVolume) { // ограничение минимума громкости
-            newCurrentVolume = lowestVolume;
-        }
-        if (newCurrentVolume > highestVolume) { // ограничение максимума громкости
-            newCurrentVolume = highestVolume;
-        }
-        currentVolume = newCurrentVolume;
-    }
-
     public void increaseVolume() { // метод увеличения громкости звука на 1
         if (currentVolume < highestVolume) {
             currentVolume = currentVolume + 1;
