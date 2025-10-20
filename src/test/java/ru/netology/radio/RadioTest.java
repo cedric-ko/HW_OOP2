@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
-    Radio station = new Radio(5);
-    Radio volume = new Radio(5);
+    Radio station = new Radio(20);
+    Radio volume = new Radio(20);
 
     // проверяем конструкторы
     @Test
     public void shouldSetNumbersOfStations() {
 
-        Assertions.assertEquals(5, station.getNumbersOfStations());
+        Assertions.assertEquals(20, station.getNumbersOfStations());
     }
 
     // проверки для радиостанций
@@ -25,28 +25,28 @@ public class RadioTest {
     @Test
     public void shouldGetNumbersOfStations() { // проверка количества радиостанций
 
-        Assertions.assertEquals(5, station.getNumbersOfStations());
+        Assertions.assertEquals(20, station.getNumbersOfStations());
     }
 
     @Test
     public void shouldGetFinalStation() { // проверка номера последней станции по умолчанию
 
-        Assertions.assertEquals(9, station.getFinalStation());
+        Assertions.assertEquals(19, station.getFinalStation());
     }
 
     @Test
     public void shouldSetStation() { // проверка включения требуемой радиостанции
 
-        station.setCurrentStation(5);
+        station.setCurrentStation(15);
 
-        Assertions.assertEquals(5, station.getCurrentStation());
+        Assertions.assertEquals(15, station.getCurrentStation());
     }
 
     @Test
-    public void shouldNotSetStationAbove9() { // проверка невключения станции больше 9
+    public void shouldNotSetStationAboveFinal() { // проверка невключения станции дальше последней
 
         station.setCurrentStation(5); // устанавливаем начальное значение
-        station.setCurrentStation(10); // устанавливаем значение больше 9
+        station.setCurrentStation(20); // устанавливаем значение больше 9
 
         Assertions.assertEquals(5, station.getCurrentStation());
     }
@@ -70,9 +70,9 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldGoFrom9To0() { // проверка переключения с 9 на 0 станцию
+    public void shouldGoFromFinalTo0() { // проверка переключения с последней на 0 станцию
 
-        station.setCurrentStation(9);
+        station.setCurrentStation(19);
         station.nextStation();
 
         Assertions.assertEquals(0, station.getCurrentStation());
@@ -88,12 +88,12 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldGoFrom0To9() { // проверка переключения с 0 на 9 станцию
+    public void shouldGoFrom0ToFinal() { // проверка переключения с 0 на последнюю станцию
 
         station.setCurrentStation(0);
         station.prevStation();
 
-        Assertions.assertEquals(9, station.getCurrentStation());
+        Assertions.assertEquals(19, station.getCurrentStation());
     }
 
     // проверки для громкости звука

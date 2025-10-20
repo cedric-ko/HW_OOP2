@@ -5,10 +5,7 @@ public class Radio {
     // поля инициализации для радиостанций
     private int firstStation = 0;
     private int numbersOfStations = 10;
-    private int finalStation = firstStation + numbersOfStations - 1; /*
-    мне кажется, это можно красиво реализовать через массив, длина которого равна
-    количеству радиостанций, но я не знаю, как задавать длину массива, не перечисляя
-    все его ячейки */
+    private int finalStation = firstStation + numbersOfStations - 1;
     private int currentStation = firstStation; // номер текущей радиостанции
 
     // поля инициализации для громкости звука
@@ -19,6 +16,7 @@ public class Radio {
     // конструкторы
     public Radio(int numbersOfStations) { // конструктор для выбора количества радиостанций
         this.numbersOfStations = numbersOfStations;
+        this.finalStation = firstStation + numbersOfStations - 1;
     }
 
     public Radio() { // конструктор для количества станций по умолчанию
@@ -34,7 +32,7 @@ public class Radio {
         return numbersOfStations;
     }
 
-    public int getFinalStation() { // геттер для последней станции по умолчанию
+    public int getFinalStation() { // геттер для последней станции
         return finalStation;
     }
 
